@@ -3,6 +3,7 @@ import type {CommandClient} from 'detritus-client';
 import ping from '../commands/common/ping';
 import xe from '../commands/common/xe';
 import tubby from '../commands/genshin/tubby';
+import slashCommands from '../commands/slashCommands';
 
 /**
  * Add commands to the Detritus Command Client
@@ -38,6 +39,19 @@ const setupCommands = (client: CommandClient) => {
     name: 'tubbycomplete',
     aliases: ['tc'],
     run: async (context, args) => tubby.tubbyComplete(context, args),
+  });
+
+  // Slash Commands
+  client.add({
+    name: 'commands',
+    metadata: {
+      description: 'Set slash Commands',
+      examples: ['commands'],
+      type: 'admin',
+      usage: 'commands',
+      adminOnly: true,
+    },
+    run: async (context, args) => slashCommands.setup(context, args),
   });
 };
 

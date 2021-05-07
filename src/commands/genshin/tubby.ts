@@ -243,6 +243,9 @@ const tubbyComplete = async (
   }
 };
 
+const tubbySlash = () => {
+  console.log('hi');
+};
 // TODO tubby crafts
 
 export default {tubbyList, tubbyRequest, tubbyComplete};
