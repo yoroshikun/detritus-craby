@@ -1,6 +1,6 @@
 {
   "name": "detritus-craby",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Drew Hutton <Yoroshi> <drew.hutton@pm.me>",
   "description": "Discord bot for the Citizens of WKClass build with nodejs + detritus ",
   "main": "build/src/main.js",

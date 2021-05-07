@@ -13,16 +13,22 @@ import tubby from '../commands/genshin/tubby';
 const setupCommands = (client: CommandClient) => {
   // Common
   client.add({name: 'ping', run: async context => ping(context)});
-  client.add({name: 'xe', run: async (context, args) => xe.xe(context, args)});
   client.add({
-    name: 'xedefault',
-    run: async (context, args) => xe.xeDefault(context, args),
+    name: 'xe',
+    run: async (context, args) => xe.xeHandler(context, args),
   });
+
   // Genshin
   // Tubby Manager
   client.add({
     name: 'tubby',
-    aliases: ['t', 'tl', 'tubbylist'],
+    aliases: ['t'],
+    run: async (context, args) => tubby.tubbyHandler(context, args),
+  });
+
+  client.add({
+    name: 'tubbylist',
+    aliases: ['tl'],
     run: async context => tubby.tubbyList(context),
   });
 

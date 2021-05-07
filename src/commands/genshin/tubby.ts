@@ -57,6 +57,51 @@ const pruneConfig = async (current: TubbyFile) => {
 };
 
 /**
+ * Tubby handler, handles commands with subcommands
+ *
+ * @param context Detritus Command context
+ * @param args Extra line arguments
+ * @returns void
+ */
+const tubbyHandler = async (context: Context, args: {tubby: string}) => {
+  try {
+    const posArguments = args.tubby.split(' ');
+    const remainingArgs = posArguments.slice(1).join(' ');
+
+    switch (posArguments[0]) {
+      case 'request': {
+        await tubbyRequest(context, {tubbyrequest: remainingArgs});
+        break;
+      }
+      case 'create': {
+        await tubbyRequest(context, {tubbyrequest: remainingArgs});
+        break;
+      }
+      case 'complete': {
+        await tubbyComplete(context, {tubbycomplete: remainingArgs});
+        break;
+      }
+      case 'list': {
+        await tubbyList(context);
+        break;
+      }
+      default: {
+        await tubbyList(context);
+        break;
+      }
+    }
+  } catch (err) {
+    context.reply({
+      embed: {
+        title: 'Tubby Manager',
+        color: 16074050, // hex F54542
+        description: err.message,
+      },
+    });
+  }
+};
+
+/**
  * Tubby List handler, handles listing of all requests
  *
  * @param context Detritus Command context
@@ -202,7 +247,7 @@ const tubbyComplete = async (
       ? config.users.findIndex(user => user.name.toLowerCase() === username)
       : -1;
 
-    if (removeUserIndex) {
+    if (removeUserIndex === -1) {
       throw new Error('no_user');
     }
 
@@ -245,4 +290,4 @@ const tubbyComplete = async (
 
 // TODO tubby crafts
 
-export default {tubbyList, tubbyRequest, tubbyComplete};
+export default {tubbyHandler, tubbyList, tubbyRequest, tubbyComplete};
