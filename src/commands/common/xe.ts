@@ -91,6 +91,38 @@ const getExchangeRate = async (base: string, to: string) => {
 };
 
 /**
+ * XE handler, handles command parsing
+ *
+ * @param context Detritus Command context
+ * @param args Extra line arguments
+ * @returns void
+ */
+const xeHandler = async (context: Context, args: {xe: string}) => {
+  try {
+    const posArguments = args.xe.split(' ');
+    const remainingArgs = posArguments.slice(1).join(' ');
+
+    switch (posArguments[0]) {
+      case 'default': {
+        await xeDefault(context, {xedefault: remainingArgs});
+        break;
+      }
+      default: {
+        await xe(context, {xe: args.xe});
+      }
+    }
+  } catch (err) {
+    context.reply({
+      embed: {
+        title: 'Exchange Rate',
+        color: 16074050, // hex F54542
+        description: err.message,
+      },
+    });
+  }
+};
+
+/**
  * XE handler, handles getting currency conversion
  *
  * @param context Detritus Command context
@@ -293,4 +325,4 @@ const xeDefault = async (context: Context, args: {xedefault: string}) => {
   }
 };
 
-export default {xe, xeDefault};
+export default {xeHandler, xe, xeDefault};

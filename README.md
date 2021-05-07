@@ -4,7 +4,7 @@ Discord bot for the Citizens of WKClass build with nodejs + [detritus][detritus_
 
 ## Requirements
 
-- Nodejs runtime
+- Nodejs runtime (>=16.0.0, for 'fs/promises')
 
 ## Development
 
