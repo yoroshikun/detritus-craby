@@ -57,13 +57,13 @@ const pruneConfig = async (current: TubbyFile) => {
 };
 
 /**
- * Tubby handler, handles commands with subcommands
+ * Handles commands with subcommands
  *
  * @param context Detritus Command context
  * @param args Extra line arguments
  * @returns void
  */
-const tubbyHandler = async (context: Context, args: {tubby: string}) => {
+const handler = async (context: Context, args: {tubby: string}) => {
   try {
     const posArguments = args.tubby.split(' ');
     const remainingArgs = posArguments.slice(1).join(' ');
@@ -290,4 +290,4 @@ const tubbyComplete = async (
 
 // TODO tubby crafts
 
-export default {tubbyHandler, tubbyList, tubbyRequest, tubbyComplete};
+export default {handler, tubbyList, tubbyRequest, tubbyComplete};

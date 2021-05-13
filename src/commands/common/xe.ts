@@ -91,13 +91,13 @@ const getExchangeRate = async (base: string, to: string) => {
 };
 
 /**
- * XE handler, handles command parsing
+ * Handles command parsing
  *
  * @param context Detritus Command context
  * @param args Extra line arguments
  * @returns void
  */
-const xeHandler = async (context: Context, args: {xe: string}) => {
+const handler = async (context: Context, args: {xe: string}) => {
   try {
     const posArguments = args.xe.split(' ');
     const remainingArgs = posArguments.slice(1).join(' ');
@@ -325,4 +325,4 @@ const xeDefault = async (context: Context, args: {xedefault: string}) => {
   }
 };
 
-export default {xeHandler, xe, xeDefault};
+export default {handler, xe, xeDefault};

@@ -3,6 +3,7 @@ import type {CommandClient} from 'detritus-client';
 import ping from '../commands/common/ping';
 import xe from '../commands/common/xe';
 import tubby from '../commands/genshin/tubby';
+import help from '../commands/common/help';
 
 /**
  * Add commands to the Detritus Command Client
@@ -15,7 +16,11 @@ const setupCommands = (client: CommandClient) => {
   client.add({name: 'ping', run: async context => ping(context)});
   client.add({
     name: 'xe',
-    run: async (context, args) => xe.xeHandler(context, args),
+    run: async (context, args) => xe.handler(context, args),
+  });
+  client.add({
+    name: 'help',
+    run: async (context, args) => help.handler(context, args),
   });
 
   // Genshin
@@ -23,7 +28,7 @@ const setupCommands = (client: CommandClient) => {
   client.add({
     name: 'tubby',
     aliases: ['t'],
-    run: async (context, args) => tubby.tubbyHandler(context, args),
+    run: async (context, args) => tubby.handler(context, args),
   });
 
   client.add({
